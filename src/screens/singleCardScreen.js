@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, Text } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+// import MapView, { Marker } from "react-native-maps";
 import axios from "axios";
 import { singleCard } from "../apis/singleCard";
 
@@ -51,7 +51,7 @@ const SingleCardScreen = (props) => {
           ))}
         </Text>
 
-        <MapView
+        {/* <MapView
           style={styles.map}
           initialRegion={position}
           showsUserLocation={true}
@@ -68,7 +68,7 @@ const SingleCardScreen = (props) => {
             description="This is a description"
             coordinate={position}
           />
-        </MapView>
+        </MapView> */}
       </ScrollView>
     </SafeAreaView>
   );

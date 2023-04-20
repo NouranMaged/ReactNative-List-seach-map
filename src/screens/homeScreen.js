@@ -25,6 +25,9 @@ const HomeScreen = () => {
     BiSpender: [],
   });
   const [showGrid, setShowGrid] = useState(true);
+  useEffect(() => {
+    getAllRestaurants();
+  }, []);
 
   const getAllRestaurants = () => {
     // const response = await yelp.get("", {
@@ -51,9 +54,7 @@ const HomeScreen = () => {
       setAllRestaurants({ ...allRestaurants });
     });
   };
-  useEffect(() => {
-    getAllRestaurants();
-  }, []);
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -102,8 +103,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   container: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    // paddingLeft: 20,
+    // paddingRight: 20,
     marginTop: 20,
   },
 });
