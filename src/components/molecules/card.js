@@ -20,11 +20,11 @@ const Card = (props) => {
         <View style={styles.container}>
           {props.data?.map((item, index) => (
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("SingleCardScreen", {
-                  id: "YwBw5RE9BCB1Kuq863t1hg",
-                })
-              }
+              // onPress={() =>
+              //   navigation.navigate("SingleCardScreen", {
+              //     id: {item.id},
+              //   })
+              // }
               key={index}
             >
               <View

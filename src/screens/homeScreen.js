@@ -54,10 +54,7 @@ const HomeScreen = () => {
     axios
       .get("https://api.yelp.com/v3/businesses/search", config)
       .then(async (response) => {
-        console.log("response.data.businesses", response.data.businesses);
-
         _storeData(response.data.businesses);
-        console.log("response.data.businesses", response.data.businesses);
         const value = await AsyncStorage.getItem("@MySuperStore:key");
         if (value !== null) {
           let costEffective = [],

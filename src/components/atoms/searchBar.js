@@ -3,7 +3,8 @@ import { StyleSheet, SafeAreaView, TextInput } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { handleSearchInput } from "../store/reducers/searchInputReducer";
+import { handleSearchInput } from "../../store/reducers/searchInputReducer";
+
 const SearchBar = () => {
   const dispatch = useDispatch();
   const searchInput = useSelector((state) => state.searchInput.searchInput);
