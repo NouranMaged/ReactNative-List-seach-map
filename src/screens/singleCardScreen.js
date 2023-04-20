@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, Text } from "react-native";
-// import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import axios from "axios";
-import { singleCard } from "../apis/singleCard";
+import metrics from "../themes/metrics";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SingleCardScreen = (props) => {
   const [position, setPosition] = useState({
     latitude: 0,
     longitude: 0,
   });
-  console.log(singleCard);
+  _storeData = async (data) => {
+    try {
+      await AsyncStorage.setItem("@MySuperStore:id", JSON.stringify(data));
+    } catch (error) {
+      // Error saving data
+    }
+  };
   const id = props.route.params.id;
-  const [singleCardData, setSingleCardData] = useState(singleCard);
+  const [singleCardData, setSingleCardData] = useState({});
   const handleShowSingleCard = () => {
-    // getSingleCardData(id).then((data) => {
-    console.log("data");
-    // });
     const key =
       "Jw0oIMgpId1HV8x-mogAapr36SVRDSAM00qOEvAmLyxCaOV1I0T6kzJbSvazjA6Q7sNS46uHfHzRzLLAESkHYv3ES50h-sUQwtwvh836OsN-D5UwO6ObMswyxDM6YXYx";
     const config = {
@@ -26,16 +30,19 @@ const SingleCardScreen = (props) => {
 
     axios
       .get(`https://api.yelp.com/v3/businesses/${id}`, config)
-      .then((response) => {
-        console.log(response); //These are the results sent back from the API!
-        setPosition({
-          latitude: singleCardData.coordinates.latitude,
-          longitude: singleCardData.coordinates.longitude,
-        });
+      .then(async (response) => {
+        _storeData(response.data);
+        const value = await AsyncStorage.getItem("@MySuperStore:id");
+        if (value !== null) {
+          setPosition({
+            latitude: JSON.parse(value.coordinates.latitude),
+            longitude: JSON.parse(value.coordinates.longitude),
+          });
+          setSingleCardData(JSON.parse(value));
+        }
       });
   };
   useEffect(() => {
-    console.log("object");
     handleShowSingleCard();
   }, []);
 
@@ -50,8 +57,7 @@ const SingleCardScreen = (props) => {
             </Text>
           ))}
         </Text>
-
-        {/* <MapView
+        <MapView
           style={styles.map}
           initialRegion={position}
           showsUserLocation={true}
@@ -68,7 +74,7 @@ const SingleCardScreen = (props) => {
             description="This is a description"
             coordinate={position}
           />
-        </MapView> */}
+        </MapView>
       </ScrollView>
     </SafeAreaView>
   );
@@ -81,8 +87,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   map: {
-    height: 400,
-    width: 400,
+    height: metrics.screenHeigth / 3,
+    width: metrics.screenWidth,
   },
 });
 export default SingleCardScreen;

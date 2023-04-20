@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import metrics from "../themes/metrics";
+import metrics from "../../themes/metrics";
 
 const Card = (props) => {
   const navigation = useNavigation();

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { useSelector } from "react-redux";
-import Card from "../components/card";
+import Card from "../components/molecules/card";
 
 const SearchScreen = () => {
   const searchedData = useSelector((state) => state.searchInput.searchedData);

@@ -3,7 +3,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SingleCardScreen from "../screens/singleCardScreen";
 import HomeScreen from "../screens/homeScreen";
-import MainHeader from "../components/mainHeader";
+import MainHeader from "../components/atoms/mainHeader";
 
 const Stack = createNativeStackNavigator();
 
